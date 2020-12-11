@@ -63,12 +63,12 @@ TEST(nct_ncstack, pushEmplace) {
     auto operator=(const ncpy_mv&) -> ncpy_mv& = delete;
     auto operator=(ncpy_mv&&) -> ncpy_mv& = default;
     int a;
-    std::string b;
+    int b;
   };
   nct_ncstack<ncpy_mv> a{};
-  a.push_emplace<int, std::string>(5, "arg2");
+  a.push_emplace<int, int>(5, 3);
   ASSERT_EQ(a.head().a, 5);
-  ASSERT_EQ(a.head().b, "arg2");
+  ASSERT_EQ(a.head().b, 3);
 }
 
 TEST(nct_ncstack, push) {

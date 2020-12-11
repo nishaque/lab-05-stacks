@@ -29,12 +29,14 @@ class nct_ncstack {
 template <typename T>
 template <typename... Args>
 void nct_ncstack<T>::push_emplace(Args &&...value) {
-  push({std::forward<Args>(value)...});
+  auto nelem = T{std::forward<Args>(value)...};
+  push(std::move(nelem));
 }
 
 template <typename T>
 void nct_ncstack<T>::push(T &&value) {
-  top = new Node<T>{std::forward<T>(value), top};
+  auto* newtop = new Node<T>{std::forward<T>(value), top};
+  top = newtop;
 }
 
 template <typename T>
@@ -47,7 +49,7 @@ const T &nct_ncstack<T>::head() const {
 
 template <typename T>
 T nct_ncstack<T>::pop() {
-  if (!top) throw std::out_of_range{"Stack is empty"};
+  if (top==nullptr) throw std::out_of_range{"Stack is empty"};
   auto rv = std::move(top->data);
   auto tbd = top;
   top = top->prevNode;
