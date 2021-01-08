@@ -9,6 +9,4 @@ struct Node {
   Node<T>* prevNode;
 };
 
-
-
 #endif  // INCLUDE_NODE_HPP

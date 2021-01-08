@@ -1,6 +1,6 @@
-
+// Copyright 2020 Yulia Timoshenko <timoshenkojulie01@gmail.com>
 #ifndef INCLUDE_NCSTACK_HPP
-  #define INCLUDE_NCSTACK_HPP
+#define INCLUDE_NCSTACK_HPP
 #include <iostream>
 #include <stdexcept>
 #include <utility>
@@ -24,21 +24,6 @@ class ncstack {
 
   ~ncstack();
 
-//  void print() {
-//    std::cout << "ncstack at " << this << std::endl;
-//    auto n = top;
-//    while (n) {
-//      if (std::is_integral<T>::value) {
-//        std::cout << static_cast<int>(n->data) << "at " << &n->data
-//                  << " node at " << n << std::endl;
-//      } else
-//        std::cout << "Type is not int,  at " << n->data << " node at " << &n
-//                  << std::endl;
-//      n = n->prevNode;
-//    }
-//    std::cout << std::endl;
-//  }
-
  private:
   Node<T> *top;
 };
@@ -54,7 +39,6 @@ void ncstack<T>::push(T &&value) {
 }
 template <typename T>
 void ncstack<T>::push(const T &value) {
-
   top = std::move(new Node<T>{value, top});
 }
 template <typename T>
@@ -88,4 +72,3 @@ auto ncstack<T>::operator=(ncstack &&s) -> ncstack & {
 }
 
 #endif  // INCLUDE_NCSTACK_HPP
-

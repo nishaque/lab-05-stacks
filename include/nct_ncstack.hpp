@@ -52,11 +52,11 @@ template <typename T>
 T nct_ncstack<T>::pop() {
   if (top == nullptr) throw std::out_of_range{"Stack is empty"};
   auto rv = std::move(top->data);
-  auto* tbd = top;
+  auto *tbd = top;
   top = top->prevNode;
   delete tbd;
-//  delete &tbd->data;
-//  tbd->prevNode=nullptr;
+  //  delete &tbd->data;
+  //  tbd->prevNode=nullptr;
   return rv;
 }
 
