@@ -2,6 +2,7 @@
 #ifndef INCLUDE_NCT_NCSTACK_HPP
 #define INCLUDE_NCT_NCSTACK_HPP
 #include <iostream>
+
 #include "Node.hpp"
 
 template <typename T>
@@ -35,7 +36,7 @@ void nct_ncstack<T>::push_emplace(Args &&...value) {
 
 template <typename T>
 void nct_ncstack<T>::push(T &&value) {
-  auto* newtop = new Node<T>{std::forward<T>(value), top};
+  auto *newtop = new Node<T>{std::forward<T>(value), top};
   top = newtop;
 }
 
@@ -49,11 +50,13 @@ const T &nct_ncstack<T>::head() const {
 
 template <typename T>
 T nct_ncstack<T>::pop() {
-  if (top==nullptr) throw std::out_of_range{"Stack is empty"};
+  if (top == nullptr) throw std::out_of_range{"Stack is empty"};
   auto rv = std::move(top->data);
-  auto tbd = top;
+  auto* tbd = top;
   top = top->prevNode;
   delete tbd;
+//  delete &tbd->data;
+//  tbd->prevNode=nullptr;
   return rv;
 }
 

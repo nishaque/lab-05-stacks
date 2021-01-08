@@ -1,7 +1,6 @@
-// Copyright 2020 Yulia Timoshenko <timoshenkojulie01@gmail.com>
 
 #ifndef INCLUDE_NCSTACK_HPP
-#define INCLUDE_NCSTACK_HPP
+  #define INCLUDE_NCSTACK_HPP
 #include <iostream>
 #include <stdexcept>
 #include <utility>
@@ -46,6 +45,7 @@ class ncstack {
 
 template <typename T>
 ncstack<T>::~ncstack<T>() {
+  std::cout<<"Destroying a stack: "<<this<<std::endl;
   while (top != nullptr) pop();
 }
 
@@ -55,6 +55,7 @@ void ncstack<T>::push(T &&value) {
 }
 template <typename T>
 void ncstack<T>::push(const T &value) {
+
   top = std::move(new Node<T>{value, top});
 }
 template <typename T>
@@ -62,8 +63,9 @@ void ncstack<T>::pop() {
   if (top == nullptr) {
     throw std::out_of_range("Stack is empty!");
   } else {
-    auto* newtop = top->prevNode;
+    auto *newtop = top->prevNode;
     delete top;
+    std::cout<<static_cast<int>(top->data);
     top = newtop;
   }
 }
@@ -88,3 +90,4 @@ auto ncstack<T>::operator=(ncstack &&s) -> ncstack & {
 }
 
 #endif  // INCLUDE_NCSTACK_HPP
+

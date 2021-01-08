@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.4)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_OSX_SYSROOT /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk)
 
 option(BUILD_COVERAGE "Build coverage" OFF)
 
@@ -49,6 +50,8 @@ target_include_directories(template
 target_include_directories(tests
         PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
         )
+
+
 
 target_link_libraries(tests GTest::main template)
 

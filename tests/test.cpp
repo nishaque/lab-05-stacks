@@ -4,7 +4,11 @@
 #include "ncstack.hpp"
 #include "nct_ncstack.hpp"
 
-TEST(Example, EmptyTest) { EXPECT_TRUE(true); }
+TEST(Example, EmptyTest) {
+  int* a = new int;
+  *a = 5;
+}
+
 TEST(ncstack, typeTraits) {
   EXPECT_FALSE(std::is_copy_constructible<ncstack<int>>::value);
   EXPECT_FALSE(std::is_copy_assignable<ncstack<int>>::value);
@@ -105,4 +109,16 @@ TEST(nct_ncstack, move) {
 
 TEST(nct_ncstack, typecheck) {
   ASSERT_THROW(nct_ncstack<int> a{}, std::runtime_error);
+  std::cout<<"last - test"<<std::endl;
+  auto* lmao1 = new std::pair<int, int>{5, 3};
+  delete lmao1;
+  std::cout << lmao1->first<<std::endl;
+  auto* lmao2 = new std::pair<int, int>{6, 2};
+  delete lmao2;
+  std::cout << lmao1->first<<std::endl;
+  ncstack<int> a{};
+  a.push(5);
+  a.pop();
+  std::cout << lmao2->first;
 }
+
