@@ -106,19 +106,3 @@ TEST(nct_ncstack, move) {
   ASSERT_EQ(c.head().head(), 4);
   EXPECT_FALSE(b);
 }
-
-TEST(nct_ncstack, typecheck) {
-  ASSERT_THROW(nct_ncstack<int> a{}, std::runtime_error);
-  std::cout<<"last - test"<<std::endl;
-  auto* lmao1 = new std::pair<int, int>{5, 3};
-  delete lmao1;
-  std::cout << lmao1->first<<std::endl;
-  auto* lmao2 = new std::pair<int, int>{6, 2};
-  delete lmao2;
-  std::cout << lmao1->first<<std::endl;
-  ncstack<int> a{};
-  a.push(5);
-  a.pop();
-  std::cout << lmao2->first;
-}
-

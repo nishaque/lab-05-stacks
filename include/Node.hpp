@@ -7,9 +7,6 @@ template <typename T>
 struct Node {
   T data;
   Node<T>* prevNode;
-  ~Node(){
-    std::cout<<this<<" is being deleted"<<std::endl;
-  }
 };
 
 

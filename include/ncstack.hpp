@@ -24,20 +24,20 @@ class ncstack {
 
   ~ncstack();
 
-  void print() {
-    std::cout << "ncstack at " << this << std::endl;
-    auto n = top;
-    while (n) {
-      if (std::is_integral<T>::value) {
-        std::cout << static_cast<int>(n->data) << "at " << &n->data
-                  << " node at " << n << std::endl;
-      } else
-        std::cout << "Type is not int,  at " << n->data << " node at " << &n
-                  << std::endl;
-      n = n->prevNode;
-    }
-    std::cout << std::endl;
-  }
+//  void print() {
+//    std::cout << "ncstack at " << this << std::endl;
+//    auto n = top;
+//    while (n) {
+//      if (std::is_integral<T>::value) {
+//        std::cout << static_cast<int>(n->data) << "at " << &n->data
+//                  << " node at " << n << std::endl;
+//      } else
+//        std::cout << "Type is not int,  at " << n->data << " node at " << &n
+//                  << std::endl;
+//      n = n->prevNode;
+//    }
+//    std::cout << std::endl;
+//  }
 
  private:
   Node<T> *top;
@@ -45,7 +45,6 @@ class ncstack {
 
 template <typename T>
 ncstack<T>::~ncstack<T>() {
-  std::cout<<"Destroying a stack: "<<this<<std::endl;
   while (top != nullptr) pop();
 }
 
@@ -65,7 +64,6 @@ void ncstack<T>::pop() {
   } else {
     auto *newtop = top->prevNode;
     delete top;
-    std::cout<<static_cast<int>(top->data);
     top = newtop;
   }
 }
