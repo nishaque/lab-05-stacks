@@ -24,6 +24,7 @@ class ncstack {
 
   ~ncstack();
 
+
  private:
   Node<T> *top;
 };
@@ -36,6 +37,8 @@ ncstack<T>::~ncstack<T>() {
 template <typename T>
 void ncstack<T>::push(T &&value) {
   top = std::move(new Node<T>{std::forward<T>(value), top});
+  T* val=&value;
+  delete val;
 }
 template <typename T>
 void ncstack<T>::push(const T &value) {
@@ -46,9 +49,10 @@ void ncstack<T>::pop() {
   if (top == nullptr) {
     throw std::out_of_range("Stack is empty!");
   } else {
-    auto *newtop = top->prevNode;
-    delete top;
-    top = newtop;
+    auto *newtop = top;
+    top = top->prevNode;
+    delete newtop;
+
   }
 }
 template <typename T>

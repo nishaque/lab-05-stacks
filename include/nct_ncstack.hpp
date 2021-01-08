@@ -55,8 +55,6 @@ T nct_ncstack<T>::pop() {
   auto *tbd = top;
   top = top->prevNode;
   delete tbd;
-  //  delete &tbd->data;
-  //  tbd->prevNode=nullptr;
   return rv;
 }
 
