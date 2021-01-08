@@ -49,8 +49,7 @@ void ncstack<T>::pop() {
   } else {
     auto *newtop = top;
     top = top->prevNode;
-    //delete newtop;
-    free(newtop);
+    delete newtop;
 
   }
 }

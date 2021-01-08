@@ -54,8 +54,7 @@ T nct_ncstack<T>::pop() {
   auto rv = std::move(top->data);
   auto *tbd = top;
   top = top->prevNode;
-  free(tbd);
-  //delete tbd;
+  delete tbd;
   return rv;
 }
 
